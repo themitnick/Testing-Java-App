@@ -7,6 +7,7 @@ import ci.ivb.testing.USER.shared.UserDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,11 +26,12 @@ import java.util.UUID;
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository usersRepository;
-    //private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UsersServiceImpl(UsersRepository usersRepository) {
+    @Autowired
+    public UsersServiceImpl(UsersRepository usersRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.usersRepository = usersRepository;
-        //this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class UsersServiceImpl implements UsersService {
 
         String publicUserId = UUID.randomUUID().toString();
         userEntity.setUserId(publicUserId);
-        //userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userEntity.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         UserEntity storedUserDetails = usersRepository.save(userEntity);
 
