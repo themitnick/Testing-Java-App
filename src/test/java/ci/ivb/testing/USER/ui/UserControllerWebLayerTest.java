@@ -1,4 +1,4 @@
-package ci.ivb.testing.USER;
+package ci.ivb.testing.USER.ui;
 
 import ci.ivb.testing.USER.service.UsersService;
 import ci.ivb.testing.USER.shared.UserDto;
