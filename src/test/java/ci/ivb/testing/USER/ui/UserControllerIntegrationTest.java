@@ -44,7 +44,6 @@ public class UserControllerIntegrationTest {
     @Test
     @DisplayName("User can be created")
     @Order(1)
-    @WithMockUser
     void createUser_whenValidUserDetailsProvide_returnsCreatedUserDetails() throws JSONException {
         //Arrange
         JSONObject userDetailsRequestJson = new JSONObject();

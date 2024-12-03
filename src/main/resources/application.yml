@@ -1,3 +1,16 @@
 server:
   error:
     include-binding-errors: always
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/"your_db_name"
+    username: "your_username"
+    password: "your_password"
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
